@@ -3,6 +3,7 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {CrudField} from '../crud-field';
 import {HttpClient} from '@angular/common/http';
 import {MdlSnackbarService} from '@angular-mdl/core';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-crud-create',
@@ -80,7 +81,7 @@ export class CrudCreateComponent implements OnInit, OnChanges {
     this.form.reset();
 
     // this.http.post('https://diyenmomjang.info/wordpressapi/wp-json/dm/add_post', formData).subscribe((data) => {
-    this.http.post('http://localhost/wordpressapi/wp-json/dm/add_post', formData).subscribe(
+    this.http.post(environment.url + '/wp-json/dm/add_post', formData).subscribe(
       (data) => {
         console.log('addPost', data);
         this.loading = false;
