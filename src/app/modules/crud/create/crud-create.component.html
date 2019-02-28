@@ -1,0 +1,36 @@
+<form novalidate [formGroup]="form" (submit)="onSubmit(form.value)">
+  <p *ngFor="let field of fields">
+  <span [ngSwitch]="field.type">
+    <mdl-textfield
+      *ngSwitchCase="'text_area'"
+      label="{{ field.name }}"
+      name="{{ field.key }}"
+      type="text"
+      formControlName="{{ field.key }}"
+      rows="3"
+      floating-label></mdl-textfield>
+
+    <input
+      *ngSwitchCase="'hidden'"
+      name="{{ field.key }}"
+      type="hidden"
+      formControlName="{{ field.key }}"
+      floating-label/>
+
+    <mdl-textfield
+      *ngSwitchDefault
+      label="{{ field.name }}"
+      name="{{ field.key }}"
+      type="{{ field.type }}"
+      formControlName="{{ field.key }}"
+      floating-label></mdl-textfield>
+  </span>
+  </p>
+  <p>
+    <button mdl-button [disabled]="!form.valid || loading" mdl-button-type="raised" mdl-ripple mdl-colored="primary">
+      {{ submitButtonText }}
+    </button>
+    <span class="small-space"></span>
+    <mdl-spinner [active]="loading"></mdl-spinner>
+  </p>
+</form>
